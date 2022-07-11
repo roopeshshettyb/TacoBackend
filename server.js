@@ -5,13 +5,13 @@ import { readdirSync } from "fs";
 
 const morgan = require("morgan");
 require("dotenv").config();
-
+const config = require('./config.js');
 const app = express();
 const http = require("http").createServer(app);
 const io = require("socket.io")(http, {
   path: "/socket.io",
   cors: {
-    origin: "http://localhost:3000",
+    origin: [config.CLIENT_URL],
     methods: ["GET", "POST", "PUT"],
     allowedHeaders: ["Content-type"],
   },
@@ -33,7 +33,7 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL],
+    origin: [config.CLIENT_URL],
   })
 );
 

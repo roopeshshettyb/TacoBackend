@@ -1,8 +1,9 @@
 import expressJwt from "express-jwt";
 import Post from "../models/post";
 import User from "../models/user";
+const config = require('../config.js');
 export const requireSignin = expressJwt({
-  secret: process.env.JWT_SECRET,
+  secret: config.JWT_SECRET,
   algorithms: ["HS256"],
 });
 

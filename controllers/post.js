@@ -1,11 +1,11 @@
 import Post from "../models/post";
 import User from "../models/user";
 import cloudinary from "cloudinary";
-
+const config = require('../config.js');
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET,
+  cloud_name: config.CLOUDINARY_NAME,
+  api_key: config.CLOUDINARY_KEY,
+  api_secret: config.CLOUDINARY_SECRET,
 });
 
 export const createPost = async (req, res) => {

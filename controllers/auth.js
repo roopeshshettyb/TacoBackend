@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import express from "express";
 import expressJwt from "express-jwt";
 import { nanoid } from "nanoid";
-
+const config = require('../config.js');
 export const register = async (req, res) => {
   //console.log("REGISTER ENDPOINT =>", req.body);
   const { name, email, password, secret } = req.body;
@@ -70,7 +70,7 @@ export const login = async (req, res) => {
       });
     }
     //created signed token
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ _id: user._id }, config.JWT_SECRET, {
       expiresIn: "7d",
     });
     user.password = undefined;
